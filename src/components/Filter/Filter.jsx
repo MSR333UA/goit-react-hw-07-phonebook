@@ -11,6 +11,7 @@ export const Filter = () => {
     const { value } = e.target;
     dispatch(changeFilterAction(value));
   };
+
   return (
     <Label>
       Find contacts by name

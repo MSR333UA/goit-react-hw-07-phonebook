@@ -1,11 +1,12 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { nanoid } from 'nanoid';
+
 import { useState } from 'react';
 
 import { Form, FormBtn, FormInput, FormLabel } from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContactsAction } from 'redux/contacts/slice.contacts';
+
 import { getContacts } from 'redux/selectors';
+import { addContact } from 'redux/contacts/operations';
 
 export const ContactForm = () => {
   const contacts = useSelector(getContacts);
@@ -39,7 +40,7 @@ export const ContactForm = () => {
       reset();
       return Notify.failure(` ${name} is already in contacts. 😢`);
     }
-    dispatch(addContactsAction({ name, number, id: nanoid() }));
+    dispatch(addContact({ name, phone: number }));
 
     reset();
   };
